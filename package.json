@@ -1,0 +1,15 @@
+{
+  "name": "sublets-nu-new",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "",
+  "author": "Jeff Yang",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "heroku-prebuild": "NODE_ENV=production cd frontend/ && npm install && npm build && cd .."
+  },
+  "cacheDirectories": [
+    "frontend/node_modules"
+  ]
+}

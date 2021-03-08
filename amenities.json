@@ -1,0 +1,90 @@
+[
+  {
+    "model": "housing.amenity",
+    "pk": 1,
+    "fields": {
+      "name": "Wifi",
+      "icon_class": "fal fa-wifi"
+    }
+  },
+  {
+    "model": "housing.amenity",
+    "pk": 2,
+    "fields": {
+      "name": "TV",
+      "icon_class": "fal fa-tv"
+    }
+  },
+  {
+    "model": "housing.amenity",
+    "pk": 3,
+    "fields": {
+      "name": "Parking",
+      "icon_class": "fal fa-parking-circle"
+    }
+  },
+  {
+    "model": "housing.amenity",
+    "pk": 4,
+    "fields": {
+      "name": "Air Conditioning",
+      "icon_class": "fal fa-air-conditioner"
+    }
+  },
+  {
+    "model": "housing.amenity",
+    "pk": 5,
+    "fields": {
+      "name": "Washer",
+      "icon_class": "fal fa-washer"
+    }
+  },
+  {
+    "model": "housing.amenity",
+    "pk": 6,
+    "fields": {
+      "name": "Dryer",
+      "icon_class": "fal fa-dryer"
+    }
+  },
+  {
+    "model": "housing.amenity",
+    "pk": 7,
+    "fields": {
+      "name": "Microwave",
+      "icon_class": "fal fa-microwave"
+    }
+  },
+  {
+    "model": "housing.amenity",
+    "pk": 8,
+    "fields": {
+      "name": "Coffee Maker",
+      "icon_class": "fal fa-coffee"
+    }
+  },
+  {
+    "model": "housing.amenity",
+    "pk": 9,
+    "fields": {
+      "name": "Oven",
+      "icon_class": "fal fa-oven"
+    }
+  },
+  {
+    "model": "housing.amenity",
+    "pk": 10,
+    "fields": {
+      "name": "Heater",
+      "icon_class": "fal fa-fireplace"
+    }
+  },
+  {
+    "model": "housing.amenity",
+    "pk": 11,
+    "fields": {
+      "name": "Refrigerator",
+      "icon_class": "fal fa-refrigerator"
+    }
+  }
+]
