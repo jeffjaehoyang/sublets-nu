@@ -143,7 +143,7 @@ STATICFILES_DIRS = [
     os.path.join(REACT_APP_DIR, "build", "static"),
 ]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 # STATICFILES_DIRS = [os.path.join(BASE_DIR, "build/static")]
 
 
@@ -300,5 +300,4 @@ if not DEBUG:
     )
     DEFAULT_FROM_EMAIL = "support@sublets.nu"  # default sender email
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-    STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
     django_heroku.settings(locals())
