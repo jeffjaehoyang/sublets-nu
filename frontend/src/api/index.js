@@ -24,6 +24,7 @@ axios.interceptors.response.use(
   async function (error) {
     const originalRequest = error.config;
     console.log('RESPONSE ERROR: ', error.response?.status);
+    console.log('ORIGINAL REQUEST: ', originalRequest);
     // console.log(error);
     if (error.response?.status === 401 && originalRequest.url.includes(`/api/auth/token`)) {
       console.log('login again please.');
