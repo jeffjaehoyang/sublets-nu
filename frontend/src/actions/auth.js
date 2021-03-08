@@ -1,11 +1,8 @@
 import { LOGIN_FAIL, LOGIN_SUCCESS, LOGOUT } from './types';
 import { fetchCurrentUser, convertToken } from '../api';
+import { CLIENT_ID, CLIENT_SECRET } from '../constants';
 import LocalStorageService from '../api/localStorage';
 const localStorageService = LocalStorageService.getService();
-
-const CLIENT_ID = 'vkaDLFaudlU1to9va0rpGV0FyExfayAWZPRDEE6P';
-const CLIENT_SECRET =
-  'YsLfk02LFufW1mJyDvQZFySzRdDGkww34mucBYayQi7Yzixnq5jZGqwfsLopsVC5R5S13gmGqKWn38pTDR7s0soAEqN7KMicg0VJpiRM3Gn9EjXpPbEcarpDe6zfDbm9';
 
 export const checkAuthentication = () => async (dispatch) => {
   const access_token = localStorageService.getAccessToken();

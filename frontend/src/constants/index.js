@@ -2,6 +2,10 @@ import styled from 'styled-components';
 
 export const GA_TRACKING_ID = 'UA-170622682-2';
 
+export const CLIENT_ID = 'vkaDLFaudlU1to9va0rpGV0FyExfayAWZPRDEE6P';
+export const CLIENT_SECRET =
+  'YsLfk02LFufW1mJyDvQZFySzRdDGkww34mucBYayQi7Yzixnq5jZGqwfsLopsVC5R5S13gmGqKWn38pTDR7s0soAEqN7KMicg0VJpiRM3Gn9EjXpPbEcarpDe6zfDbm9';
+
 export const stepToFieldMap = {
   1: ['title'],
   2: ['street_address', 'city', 'zipcode', 'street_address_is_open'],

@@ -1,13 +1,10 @@
 import axios from 'axios';
 import LocalStorageService from '../api/localStorage';
+import { CLIENT_ID, CLIENT_SECRET } from '../constants';
 const localStorageService = LocalStorageService.getService();
 
-const CLIENT_ID = 'vkaDLFaudlU1to9va0rpGV0FyExfayAWZPRDEE6P';
-const CLIENT_SECRET =
-  'YsLfk02LFufW1mJyDvQZFySzRdDGkww34mucBYayQi7Yzixnq5jZGqwfsLopsVC5R5S13gmGqKWn38pTDR7s0soAEqN7KMicg0VJpiRM3Gn9EjXpPbEcarpDe6zfDbm9';
-
 axios.interceptors.request.use((config) => {
-  if (config.url === 'http://localhost:8000/api/auth/convert-token') {
+  if (config.url.includes('/api/auth/convert-token')) {
     console.log('convert-token request intercepted');
     return config;
   }
@@ -28,7 +25,7 @@ axios.interceptors.response.use(
     const originalRequest = error.config;
     console.log('RESPONSE ERROR: ', error.response?.status);
     // console.log(error);
-    if (error.response?.status === 401 && originalRequest.url === `http://localhost:8000/api/auth/token`) {
+    if (error.response?.status === 401 && originalRequest.url.includes(`/api/auth/token`)) {
       console.log('login again please.');
       return Promise.reject(error);
     }
