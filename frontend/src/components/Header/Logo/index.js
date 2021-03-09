@@ -6,7 +6,7 @@ const Logo = () => {
   return (
     <Styled.Logo to="/">
       <Styled.Image>
-        <img src="/images/favicon.png" alt="logo" />
+        <img src="images/favicon.png" alt="logo" />
       </Styled.Image>
       <Styled.Text>Sublets.nu</Styled.Text>
     </Styled.Logo>

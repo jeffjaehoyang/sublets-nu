@@ -13,7 +13,7 @@ import { createMapOptions } from '../constants';
 const EmptyList = () => {
   return (
     <div className="flex flex-col justify-center items-center font-bold text-lg sm:text-3xl h-full">
-      <img src="/images/listing_not_found.svg" alt="not found" />
+      <img src="images/listing_not_found.svg" alt="not found" />
       <p className="mt-6">Oops! No Rooms were Found!</p>
     </div>
   );
