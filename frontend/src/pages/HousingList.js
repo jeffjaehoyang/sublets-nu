@@ -8,12 +8,13 @@ import { connect } from 'react-redux';
 import GoogleMapReact from 'google-map-react';
 import PointMarker from '../components/PointMarker';
 import { createMapOptions } from '../constants';
+import listing_not_found_img from '../images/listing_not_found.svg';
 // import InfiniteScroll from 'react-infinite-scroll-component';
 
 const EmptyList = () => {
   return (
     <div className="flex flex-col justify-center items-center font-bold text-lg sm:text-3xl h-full">
-      <img src="images/listing_not_found.svg" alt="not found" />
+      <img src={listing_not_found_img} alt="not found" />
       <p className="mt-6">Oops! No Rooms were Found!</p>
     </div>
   );
