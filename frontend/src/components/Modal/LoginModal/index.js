@@ -6,6 +6,7 @@ import Icon from '../../../icons';
 import { connect } from 'react-redux';
 import { googleLogin } from '../../../actions/auth';
 import { hideModal } from '../../../actions/modal';
+import favicon_img from '../../../images/favicon.png';
 
 const LoginModal = ({ hideModal, googleLogin, facebookLogin }) => {
   const handleSocialLogin = (response) => {
@@ -28,7 +29,7 @@ const LoginModal = ({ hideModal, googleLogin, facebookLogin }) => {
   return (
     <div className="max-w-md w-full space-y-8">
       <div>
-        <img className="mx-auto h-16 w-auto" src="/images/favicon.png" alt="logo" />
+        <img className="mx-auto h-16 w-auto" src={favicon_img} alt="logo" />
         <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">Sign in to your account</h2>
         <p className="mt-2 text-center text-sm text-gray-700">Northwestern-exclusive community</p>
       </div>

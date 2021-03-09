@@ -2,6 +2,7 @@ import React from 'react';
 import Icon from '../../icons';
 import * as Styled from './styles';
 import { useHistory } from 'react-router-dom';
+import home_marker_image from '../../images/home_marker.png';
 
 const PointMarker = ({ housing, text, tooltip, renderHomeMarker, hoveredHousing }) => {
   const history = useHistory();
@@ -10,7 +11,7 @@ const PointMarker = ({ housing, text, tooltip, renderHomeMarker, hoveredHousing 
   };
 
   return renderHomeMarker ? (
-    <img src="/images/home_marker.png" alt="home marker" style={{ width: '80px', height: '80px' }} />
+    <img src={home_marker_image} alt="home marker" style={{ width: '80px', height: '80px' }} />
   ) : (
     <Styled.Marker onClick={handleClick} hovered={housing.id === hoveredHousing}>
       <strong title={tooltip}>${text}</strong>
