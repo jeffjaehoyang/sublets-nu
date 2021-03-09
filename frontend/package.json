@@ -1,5 +1,6 @@
 {
   "name": "sublets-nu-client",
+  "homepage": "https://sublets-nu-new.herokuapp.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

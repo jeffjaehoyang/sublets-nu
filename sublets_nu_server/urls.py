@@ -16,6 +16,12 @@ urlpatterns = [
     path("api/housing/", include("housing.urls")),
     # entry-point for react app
     path("", FrontendAppView.as_view()),
+    # re_path(
+    #     r"^(?:.*)/?$",
+    #     TemplateView.as_view(template_name="index.html"),
+    #     name="index",
+    # )
+    # re_path("^.\/*", FrontendAppView.as_view()),
 ]
 
 # THIS IS NOT A GOOD PRACTICE FOR PRODUCTION : DEVELOPMENT SERVER ONLY

@@ -66,10 +66,12 @@ CRONJOBS = [("*/1 * * * *", "sublets_nu_server.cron.my_cron_job")]
 
 ROOT_URLCONF = "sublets_nu_server.urls"
 
+REACT_APP_DIR = os.path.join(BASE_DIR, "frontend")
+
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [os.path.join(BASE_DIR, "frontend/build")],
+        "DIRS": [os.path.join(REACT_APP_DIR, "build")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -138,7 +140,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = "/static/"
-REACT_APP_DIR = os.path.join(BASE_DIR, "frontend")
 STATICFILES_DIRS = [
     os.path.join(REACT_APP_DIR, "build", "static"),
 ]

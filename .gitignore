@@ -4,6 +4,7 @@
 *.pyc
 *.rdb
 media
+staticfiles
 
 # heroku
 config.txt
