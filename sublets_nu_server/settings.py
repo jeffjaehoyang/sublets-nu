@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
+    "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
     "django.contrib.sites",
     "corsheaders",
@@ -145,6 +146,7 @@ STATICFILES_DIRS = [
 ]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+# STATIC_ROOT = (os.path.join(REACT_APP_DIR, "build", "static"),)
 # STATICFILES_DIRS = [os.path.join(BASE_DIR, "build/static")]
 
 

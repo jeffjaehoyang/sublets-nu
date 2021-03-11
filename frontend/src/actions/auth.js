@@ -6,6 +6,7 @@ const localStorageService = LocalStorageService.getService();
 
 export const checkAuthentication = () => async (dispatch) => {
   const access_token = localStorageService.getAccessToken();
+  console.log('checking auth state');
   if (access_token) {
     fetchCurrentUser()
       .then((res) => {

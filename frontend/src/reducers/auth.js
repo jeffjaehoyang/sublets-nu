@@ -2,9 +2,9 @@ import { SIGNUP_SUCCESS, SIGNUP_FAIL, LOGIN_SUCCESS, LOGIN_FAIL, LOGOUT } from '
 
 const initialState = {
   token: localStorage.getItem('access_token'),
-  isAuthenticated: null,
+  isAuthenticated: false,
   user: null,
-  loading: true
+  loading: false
 };
 
 const authReducer = (state = initialState, action) => {

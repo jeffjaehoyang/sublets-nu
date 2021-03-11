@@ -12,7 +12,7 @@ class FrontendAppView(View):
     run build`).
     """
 
-    def get(self, request):
+    def get(self, request, path=""):
         try:
             with open(
                 os.path.join(settings.REACT_APP_DIR, "build", "index.html")

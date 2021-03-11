@@ -6,6 +6,8 @@ from django.conf.urls.static import static
 from .views import FrontendAppView
 
 urlpatterns = [
+    path("<str:path>", FrontendAppView.as_view()),
+    path("", FrontendAppView.as_view()),
     path("admin/", admin.site.urls),
     # oauth
     path("api/auth/", include("drf_social_oauth2.urls", namespace="drf")),
@@ -15,13 +17,7 @@ urlpatterns = [
     # housing app endpoint root
     path("api/housing/", include("housing.urls")),
     # entry-point for react app
-    path("", FrontendAppView.as_view()),
-    # re_path(
-    #     r"^(?:.*)/?$",
-    #     TemplateView.as_view(template_name="index.html"),
-    #     name="index",
-    # )
-    # re_path("^.\/*", FrontendAppView.as_view()),
+    # path("", FrontendAppView.as_view()),
 ]
 
 # THIS IS NOT A GOOD PRACTICE FOR PRODUCTION : DEVELOPMENT SERVER ONLY

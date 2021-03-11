@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import About from '../../pages/About';
 import HousingDetail from '../../pages/HousingDetail';
 import HousingList from '../../pages/HousingList';
@@ -33,7 +33,7 @@ const App = () => {
 
   return (
     <Provider store={store}>
-      <Router basename="static">
+      <Router>
         <RouteChangeTracker />
         <ModalWrapper />
         <Layout>

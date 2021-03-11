@@ -8,7 +8,7 @@ import { googleLogin } from '../../../actions/auth';
 import { hideModal } from '../../../actions/modal';
 import favicon_img from '../../../images/favicon.png';
 
-const LoginModal = ({ hideModal, googleLogin, facebookLogin }) => {
+const LoginModal = ({ hideModal, googleLogin, facebookLogin, isAuthenticated }) => {
   const handleSocialLogin = (response) => {
     console.log('handle social login response', response);
     // if (response?.profileObj?.email) {
@@ -67,10 +67,15 @@ const LoginModal = ({ hideModal, googleLogin, facebookLogin }) => {
   );
 };
 
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.auth.isAuthenticated,
+  loading: state.auth.loading
+});
+
 const mapDispatchToProps = (dispatch) => ({
   googleLogin: (response) => dispatch(googleLogin(response)),
   // facebookLogin: (response) => dispatch(facebookLogin(response)),
   hideModal: () => dispatch(hideModal())
 });
 
-export default connect(null, mapDispatchToProps)(LoginModal);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginModal);

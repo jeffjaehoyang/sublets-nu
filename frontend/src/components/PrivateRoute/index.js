@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 import { showModal } from '../../actions/modal';
+import HousingList from '../../pages/HousingList';
 
 const PrivateRoute = ({ loading, isAuthenticated, showModal, path, component }) => {
+  console.log('private route : ', isAuthenticated, loading);
   useEffect(() => {
     if (!isAuthenticated && !loading)
       showModal(
@@ -12,7 +14,7 @@ const PrivateRoute = ({ loading, isAuthenticated, showModal, path, component }) 
         },
         'login'
       );
-  }, [isAuthenticated, loading]);
+  }, [isAuthenticated]);
 
   return isAuthenticated ? <Route path={path} component={component} /> : null;
 };
