@@ -7,6 +7,7 @@ from .views import FrontendAppView
 
 urlpatterns = [
     path("<str:path>", FrontendAppView.as_view()),
+    path("housing/<str:path>", FrontendAppView.as_view()),
     path("", FrontendAppView.as_view()),
     path("admin/", admin.site.urls),
     # oauth
