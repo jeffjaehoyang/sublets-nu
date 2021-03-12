@@ -5,8 +5,18 @@ import * as Styled from './styles';
 import { saveHousingAction, unsaveHousingAction, fetchSavedHousingAction } from '../../actions/housing';
 import { formatDate } from '../../utils';
 import { roomTypeMapping } from '../../constants';
+import { showModal } from '../../actions/modal';
 
-const HousingCard = ({ housing, savedHousingList, addSaved, removeSaved, setHoveredHousing, isMyListing }) => {
+const HousingCard = ({
+  isAuthenticated,
+  housing,
+  savedHousingList,
+  addSaved,
+  removeSaved,
+  showModal,
+  setHoveredHousing,
+  isMyListing
+}) => {
   const [isSaved, setIsSaved] = useState(false);
   const [mainImage, setMainImage] = useState(null);
   useEffect(() => {
@@ -15,6 +25,14 @@ const HousingCard = ({ housing, savedHousingList, addSaved, removeSaved, setHove
   }, [savedHousingList, housing.id]);
 
   const handleSave = () => {
+    if (!isAuthenticated) {
+      showModal(
+        {
+          open: true
+        },
+        'login'
+      );
+    }
     if (!isSaved) {
       setIsSaved(true);
       addSaved({ housing: housing.id });
@@ -73,7 +91,8 @@ const HousingCard = ({ housing, savedHousingList, addSaved, removeSaved, setHove
 };
 
 const mapStateToProps = (state) => ({
-  savedHousingList: state.housing.savedHousingList
+  savedHousingList: state.housing.savedHousingList,
+  isAuthenticated: state.auth.isAuthenticated
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -85,6 +104,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   removeSaved: (data) => {
     dispatch(unsaveHousingAction(data));
+  },
+  showModal: (modalProps, modalType) => {
+    dispatch(showModal({ modalProps, modalType }));
   }
 });
 
