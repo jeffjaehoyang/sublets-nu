@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     "social_django",
     "drf_social_oauth2",
     "django_crontab",
+    "storages",
 ]
 
 MIDDLEWARE = [
@@ -301,6 +302,7 @@ if not DEBUG:
     SOCIALACCOUNT_EMAIL_VERIFICATION = (
         None  # users who login with social accounts don't need to very emails
     )
+    DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
     DEFAULT_FROM_EMAIL = "support@sublets.nu"  # default sender email
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
     django_heroku.settings(locals())
