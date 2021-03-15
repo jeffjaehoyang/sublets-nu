@@ -1,9 +1,9 @@
 /* purgecss start ignore */
 @tailwind base;
 @tailwind components;
+@import '~react-image-gallery/styles/css/image-gallery.css';
 /* purgecss end ignore */
 @tailwind utilities;
-@import '~react-image-gallery/styles/css/image-gallery.css';
 
 /* purgecss start ignore */
 .mymodal {
