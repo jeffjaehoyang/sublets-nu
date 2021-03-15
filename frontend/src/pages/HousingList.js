@@ -7,7 +7,7 @@ import { fetchHousingListAction, fetchSavedHousingAction } from '../actions/hous
 import { connect } from 'react-redux';
 import GoogleMapReact from 'google-map-react';
 import PointMarker from '../components/PointMarker';
-import { createMapOptions } from '../constants';
+import { createMapOptions, GOOGLE_MAPS_API_KEY } from '../constants';
 import listing_not_found_img from '../images/listing_not_found.svg';
 // import InfiniteScroll from 'react-infinite-scroll-component';
 
@@ -56,7 +56,7 @@ const HousingList = ({
         <GoogleMapsContainer>
           <GoogleMapReact
             bootstrapURLKeys={{
-              key: 'AIzaSyBri9ifPSIN3pOL6bbtkz9QHeYwrFCkpV0',
+              key: GOOGLE_MAPS_API_KEY,
               language: 'en',
               region: 'US'
             }}

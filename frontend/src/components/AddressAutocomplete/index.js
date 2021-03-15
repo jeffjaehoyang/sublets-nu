@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { GOOGLE_MAPS_API_KEY } from '../../constants';
 
 let autoComplete;
 
@@ -55,9 +56,8 @@ const AddressAutocomplete = ({ setFieldValue }) => {
   };
 
   useEffect(() => {
-    loadScript(
-      `https://maps.googleapis.com/maps/api/js?key=AIzaSyBri9ifPSIN3pOL6bbtkz9QHeYwrFCkpV0&libraries=places`,
-      () => handleScriptLoad(setQuery, autoCompleteRef)
+    loadScript(`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_MAPS_API_KEY}&libraries=places`, () =>
+      handleScriptLoad(setQuery, autoCompleteRef)
     );
   }, []);
 

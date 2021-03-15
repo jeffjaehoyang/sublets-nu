@@ -4,6 +4,7 @@ export const GA_TRACKING_ID = 'UA-170622682-2';
 
 export const CLIENT_ID = process.env.REACT_APP_OAUTH_CLIENT_ID;
 export const CLIENT_SECRET = process.env.REACT_APP_OAUTH_CLIENT_SECRET;
+export const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 export const stepToFieldMap = {
   1: ['title'],

@@ -4,7 +4,7 @@ import Icon from '../../icons';
 import ImageGallery from 'react-image-gallery';
 import GoogleMapsContainer from '../Container/GoogleMapsContainer';
 import GoogleMapReact from 'google-map-react';
-import { createMapOptions } from '../../constants';
+import { createMapOptions, GOOGLE_MAPS_API_KEY } from '../../constants';
 import PointMarker from '../PointMarker';
 import { formatDate } from '../../utils';
 
@@ -149,7 +149,7 @@ const HousingDetailContent = ({ housing }) => {
         <GoogleMapsContainer height="50vh" alwaysDisplay={true}>
           <GoogleMapReact
             bootstrapURLKeys={{
-              key: 'AIzaSyBri9ifPSIN3pOL6bbtkz9QHeYwrFCkpV0',
+              key: GOOGLE_MAPS_API_KEY,
               language: 'en',
               region: 'US'
             }}
