@@ -1,6 +1,8 @@
 import axios from 'axios';
+import { LOGIN_FAIL } from '../actions/types';
 import LocalStorageService from '../api/localStorage';
 import { CLIENT_ID, CLIENT_SECRET } from '../constants';
+import store from '../context/store';
 const localStorageService = LocalStorageService.getService();
 
 axios.interceptors.request.use((config) => {
@@ -26,8 +28,12 @@ axios.interceptors.response.use(
     console.log('RESPONSE ERROR: ', error.response?.status);
     console.log('ORIGINAL REQUEST: ', originalRequest);
     // console.log(error);
-    if (error.response?.status === 401 && originalRequest.url.includes(`/api/auth/token`)) {
+    if ([400, 401].includes(error.response?.status) && originalRequest.url.includes(`/api/auth/token`)) {
       console.log('login again please.');
+      console.log('dispatching login fail');
+      store.dispatch({
+        type: LOGIN_FAIL
+      });
       return Promise.reject(error);
     }
     if ([401, 403].includes(error.response?.status) && !originalRequest._retry) {
