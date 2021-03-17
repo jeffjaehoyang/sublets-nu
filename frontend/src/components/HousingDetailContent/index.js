@@ -4,7 +4,7 @@ import Icon from '../../icons';
 import ImageGallery from 'react-image-gallery';
 import GoogleMapsContainer from '../Container/GoogleMapsContainer';
 import GoogleMapReact from 'google-map-react';
-import { createMapOptions, GOOGLE_MAPS_API_KEY } from '../../constants';
+import { createMapOptions, GOOGLE_MAPS_API_KEY, warningRed } from '../../constants';
 import PointMarker from '../PointMarker';
 import { formatDate } from '../../utils';
 
@@ -87,44 +87,10 @@ const HousingDetailContent = ({ housing }) => {
               </Styled.Roommates>
             </Styled.RoomInfoWrapper>
           </Styled.HousingInfoWrapper>
-          <Styled.RightWrapper>
-            <Styled.DistanceInfoWrapper>
-              <Styled.Distances>
-                <Icon icon={['far', 'walking']} style={{ marginRight: '8px' }} />
-                Tech • {housing.duration_tech}{' '}
-              </Styled.Distances>
-              <Styled.Distances>
-                <Icon icon={['far', 'walking']} style={{ marginRight: '8px' }} />
-                Norris • {housing.duration_norris}{' '}
-              </Styled.Distances>
-              <Styled.Distances>
-                <Icon icon={['far', 'walking']} style={{ marginRight: '8px' }} />
-                Kresge • {housing.duration_kresge}{' '}
-              </Styled.Distances>
-              <Styled.Distances>
-                <Icon icon={['far', 'walking']} style={{ marginRight: '8px' }} />
-                Target • {housing.duration_target}{' '}
-              </Styled.Distances>
-            </Styled.DistanceInfoWrapper>
-            <Styled.ProfileInfoWrapper>
-              <Styled.UserName>
-                <Styled.UserImg src={housing.uploader.picture} />
-                {housing.uploader.first_name + ' ' + housing.uploader.last_name}
-              </Styled.UserName>
-              <Styled.UserVerified>
-                <Icon icon={['fad', 'check-circle']} style={{ color: 'green', marginRight: '5px' }} />
-                Verified Northwestern
-              </Styled.UserVerified>
-              <Styled.UserNegotiate>
-                <Icon icon={['fad', 'hands-helping']} style={{ marginRight: '5px' }} />
-                {housing.is_negotiable ? 'Open to negotiate' : 'Unwilling to negotiate'}
-              </Styled.UserNegotiate>
-            </Styled.ProfileInfoWrapper>
-          </Styled.RightWrapper>
         </Styled.RowWrap>
-        <div className="flex sm:flex-row flex-col sm:mt-8 mb-8 sm:mb-20">
-          <div className="mt-4 flex-1 order-last sm:order-first">
-            <div className="font-bold">Amenities</div>
+        <Styled.BodyWrapper>
+          <div className="flex-1 order-last sm:order-first">
+            <div className="font-bold text-xl">Amenities</div>
             <div className="grid grid-cols-2 w-full sm:w-2/3">
               {housing.amenities.map((amenity) => {
                 const icon_class = amenity.icon_class.split(' ')[0];
@@ -145,29 +111,78 @@ const HousingDetailContent = ({ housing }) => {
             <Icon icon={['fad', 'quote-left']} style={{ height: '30px', width: '30px', marginRight: '10px' }} />
             {housing.description}
           </Styled.Description>
-        </div>
-        <GoogleMapsContainer height="50vh" alwaysDisplay={true}>
-          <GoogleMapReact
-            bootstrapURLKeys={{
-              key: GOOGLE_MAPS_API_KEY,
-              language: 'en',
-              region: 'US'
+        </Styled.BodyWrapper>
+        <Styled.DistanceWrapper>
+          <div className="font-bold text-xl">Relative Location</div>
+          <Styled.DistanceItem>
+            <Icon icon={['fad', 'map-pin']} style={{ marginRight: '8px', color: warningRed }} />
+            Tech • {housing.duration_tech.split(' ')[0]} minute walk
+          </Styled.DistanceItem>
+          <Styled.DistanceItem>
+            <Icon icon={['fad', 'map-pin']} style={{ marginRight: '8px', color: warningRed }} />
+            Norris • {housing.duration_norris.split(' ')[0]} minute walk
+          </Styled.DistanceItem>
+          <Styled.DistanceItem>
+            <Icon icon={['fad', 'map-pin']} style={{ marginRight: '8px', color: warningRed }} />
+            Kresge • {housing.duration_kresge.split(' ')[0]} minute walk
+          </Styled.DistanceItem>
+          <Styled.DistanceItem>
+            <Icon icon={['fad', 'map-pin']} style={{ marginRight: '8px', color: warningRed }} />
+            Target • {housing.duration_target.split(' ')[0]} minute walk
+          </Styled.DistanceItem>
+        </Styled.DistanceWrapper>
+        <Styled.ProfileInfoWrapper>
+          <Styled.UserName>
+            <Styled.UserImg src={housing.uploader.picture} />
+            <div className="flex flex-col">
+              <div className="text-2xl font-bold">
+                Listed By
+                {' ' + housing.uploader.first_name + ' ' + housing.uploader.last_name}
+              </div>
+              <Styled.UserVerified>
+                <Icon icon={['fad', 'check-circle']} style={{ color: 'green', marginRight: '5px' }} />
+                Verified Northwestern
+              </Styled.UserVerified>
+              <Styled.UserNegotiate>
+                <Icon icon={['fad', 'hands-helping']} style={{ marginRight: '5px' }} />
+                {housing.is_negotiable ? 'Open to negotiate' : 'Unwilling to negotiate'}
+              </Styled.UserNegotiate>
+            </div>
+          </Styled.UserName>
+          <Styled.ContactBtn
+            to="#"
+            onClick={(e) => {
+              e.preventDefault();
+              window.location.href = housing.uploader.email;
             }}
-            defaultCenter={{ lat: parseFloat(housing.latitude), lng: parseFloat(housing.longitude) }}
-            defaultZoom={16}
-            options={createMapOptions}
           >
-            <PointMarker
-              key={housing.id}
-              lat={parseFloat(housing.latitude)}
-              lng={parseFloat(housing.longitude)}
-              housing={housing}
-              text={housing.price}
-              tooltip={housing.title}
-              renderHomeMarker={true}
-            />
-          </GoogleMapReact>
-        </GoogleMapsContainer>
+            Contact
+          </Styled.ContactBtn>
+        </Styled.ProfileInfoWrapper>
+        <Styled.GoogleMapsWrapper>
+          <GoogleMapsContainer height="50vh" alwaysDisplay={true}>
+            <GoogleMapReact
+              bootstrapURLKeys={{
+                key: GOOGLE_MAPS_API_KEY,
+                language: 'en',
+                region: 'US'
+              }}
+              defaultCenter={{ lat: parseFloat(housing.latitude), lng: parseFloat(housing.longitude) }}
+              defaultZoom={16}
+              options={createMapOptions}
+            >
+              <PointMarker
+                key={housing.id}
+                lat={parseFloat(housing.latitude)}
+                lng={parseFloat(housing.longitude)}
+                housing={housing}
+                text={housing.price}
+                tooltip={housing.title}
+                renderHomeMarker={true}
+              />
+            </GoogleMapReact>
+          </GoogleMapsContainer>
+        </Styled.GoogleMapsWrapper>
       </Styled.Wrapper>
     </Styled.HousingDetail>
   );

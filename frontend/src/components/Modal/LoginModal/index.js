@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { googleLogin } from '../../../actions/auth';
 import { hideModal } from '../../../actions/modal';
 import favicon_img from '../../../images/favicon.png';
+import { warningRed } from '../../../constants';
 
 const LoginModal = ({ hideModal, googleLogin, facebookLogin, isAuthenticated }) => {
   const handleSocialLogin = (response) => {
@@ -44,7 +45,7 @@ const LoginModal = ({ hideModal, googleLogin, facebookLogin, isAuthenticated }) 
         clientId="945324056638-a59e6v72lh2easqbmlv6dqvie7sn1hk6.apps.googleusercontent.com"
         render={(renderProps) => (
           <Styled.FacebookButton onClick={renderProps.onClick}>
-            <Icon icon={['fab', 'google']} style={{ color: '#DB4437', marginRight: '10px' }} />
+            <Icon icon={['fab', 'google']} style={{ color: warningRed, marginRight: '10px' }} />
             Login with Google
           </Styled.FacebookButton>
         )}

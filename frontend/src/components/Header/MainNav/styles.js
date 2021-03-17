@@ -65,6 +65,8 @@ export const ProfileImg = styled.img`
 
 export const UploadBtn = styled(NavLink)`
   ${tw`relative text-purple-900 rounded-md px-2 py-2 hover:bg-purple-100 hover:text-purple-900 ml-0 sm:ml-8 mt-3 sm:mt-0`}
+  width: max-content;
+  text-decoration: none;
   &.active {
     ${tw`bg-purple-100 text-purple-900`};
   }

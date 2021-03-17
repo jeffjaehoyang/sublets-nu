@@ -227,3 +227,5 @@ export const createMapOptions = (maps) => {
     styles: googleMapStyle
   };
 };
+
+export const warningRed = '#DB4437';

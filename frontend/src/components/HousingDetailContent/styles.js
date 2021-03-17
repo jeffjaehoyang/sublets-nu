@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
@@ -10,7 +11,7 @@ export const Wrapper = styled.div`
 `;
 
 export const RowWrap = styled.div`
-  ${tw`flex flex-col sm:flex-row w-full justify-between`}
+  ${tw`flex flex-col sm:flex-row w-full justify-between border-b mb-8 pb-8`}
 `;
 
 export const RightWrapper = styled.div`
@@ -22,15 +23,16 @@ export const HousingInfoWrapper = styled.div`
 `;
 
 export const ProfileInfoWrapper = styled.div`
-  ${tw`flex flex-col px-4 py-4 bg-gray-50 rounded-md text-gray-900 sm:mt-8 mt-4 w-full sm:w-max self-end order-first sm:order-2`}
+  ${tw`flex flex-col sm:flex-row sm:items-center text-gray-900 border-b mb-8 pb-8 w-full`}
 `;
 
 export const RoomInfoWrapper = styled.div`
-  ${tw`mt-4 flex flex-col sm:flex-row justify-between sm:items-center px-4 py-4 bg-gray-50 rounded-md text-gray-900 w-full`}
+  ${tw`mt-4 flex flex-col sm:flex-row justify-between sm:items-center px-4 py-4 bg-purple-50 rounded-md text-gray-900 w-full`}
 `;
 
 export const DateInfoWrapper = styled.div`
-  ${tw`mt-4 flex flex-row items-center px-4 py-4 bg-gray-50 rounded-md text-gray-900 w-full`}
+  ${tw`mt-4 flex flex-row items-center px-4 py-4 bg-purple-50 rounded-md text-gray-900`}
+  width: max-content;
 `;
 
 export const DistanceInfoWrapper = styled.div`
@@ -40,6 +42,18 @@ export const DistanceInfoWrapper = styled.div`
 export const LoaderWrapper = styled.div`
   ${tw`flex flex-col max-w-screen-xl w-full mx-auto p-5 justify-center items-center`}
   height: calc(100vh - 82px);
+`;
+
+export const BodyWrapper = styled.div`
+  ${tw`flex sm:flex-row flex-col mb-8 pb-8 border-b`}
+`;
+
+export const DistanceWrapper = styled.div`
+  ${tw`flex flex-col mb-8 pb-8 border-b`}
+`;
+
+export const GoogleMapsWrapper = styled.div`
+  ${tw`flex flex-col`}
 `;
 
 export const HousingImage = styled.div`
@@ -79,8 +93,8 @@ export const RoomType = styled.div`
   ${tw`font-bold text-xl sm:mr-16`}
 `;
 
-export const Distances = styled.div`
-  ${tw`font-normal text-base`}
+export const DistanceItem = styled.div`
+  ${tw`font-normal text-xl mt-4`}
 `;
 
 export const CampusArea = styled.div`
@@ -88,7 +102,7 @@ export const CampusArea = styled.div`
 `;
 
 export const UserName = styled.div`
-  ${tw`flex items-center font-bold text-base`}
+  ${tw`flex items-center font-bold text-xl mb-8 sm:mb-0 sm:mr-10`}
 `;
 
 export const UserVerified = styled.div`
@@ -100,12 +114,17 @@ export const UserNegotiate = styled.div`
 `;
 
 export const UserImg = styled.img`
-  ${tw`rounded-full ml-0 sm:mt-0 mr-2`}
-  width: 25px;
-  height: 25px;
+  ${tw`rounded-full border-2 border-gray-200 ml-0 sm:mt-0 mr-2`}
+  width: 80px;
+  height: 80px;
 `;
 
 export const Description = styled.div`
-  ${tw`mt-4 flex-1 order-first sm:order-last bg-gray-50 rounded-md p-5`}
+  ${tw`flex-1 order-first sm:order-last bg-gray-50 rounded-md p-5 mb-4 sm:mb-0`}
   height: max-content;
+`;
+
+export const ContactBtn = styled(Link)`
+  ${tw`flex justify-center items-center uppercase font-medium sm:text-sm h-12 px-4 text-purple-800 border-2 rounded-md border-purple-800 mx-auto sm:mx-0`}
+  width: fit-content;
 `;
