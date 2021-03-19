@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
 import * as Styled from './styles';
@@ -8,9 +8,16 @@ import { Formik, Form, Field } from 'formik';
 import Icon from '../../../icons';
 import { campusAreaOption, roomTypeOption } from '../../../constants';
 import { showModal } from '../../../actions/modal';
+import 'react-dates/initialize';
+import { DateRangePicker } from 'react-dates';
+import 'react-dates/lib/css/_datepicker.css';
+
 const animatedComponents = makeAnimated();
 
 const HousingListFilter = ({ housingList, filterHousingList, showModal, setFilters, activeFilters }) => {
+  const [focusedInput, setFocusedInput] = useState(null);
+  const [start, setStart] = useState(activeFilters.rent_start_date || null);
+  const [end, setEnd] = useState(activeFilters.rent_end_date || null);
   const campusAreaSelectRef = useRef(null);
   const roomTypeSelectRef = useRef(null);
   const formData = {
@@ -30,6 +37,9 @@ const HousingListFilter = ({ housingList, filterHousingList, showModal, setFilte
         initialValues={formData}
         onSubmit={(values, { setSubmitting }) => {
           try {
+            values.rent_start_date = values.rent_start_date.format('YYYY-MM-DD');
+            values.rent_end_date = values.rent_end_date.format('YYYY-MM-DD');
+            console.log('filter with values: ', values);
             filterHousingList(values);
           } catch (e) {
             console.log(e);
@@ -86,7 +96,21 @@ const HousingListFilter = ({ housingList, filterHousingList, showModal, setFilte
             </div>
             <div className="flex flex-col flex-1 hidden sm:flex">
               <div className="uppercase text-gray-400 text-xs">Date</div>
-              <div className="flex flex-row items-center">
+              <DateRangePicker
+                startDate={start}
+                startDateId="startDate"
+                endDate={end}
+                endDateId="endDate"
+                onDatesChange={({ startDate, endDate }) => {
+                  setStart(startDate);
+                  setEnd(endDate);
+                  setFieldValue('rent_start_date', startDate);
+                  setFieldValue('rent_end_date', endDate);
+                }}
+                focusedInput={focusedInput}
+                onFocusChange={(focusedInput) => setFocusedInput(focusedInput)}
+              />
+              {/* <div className="flex flex-row items-center">
                 <Field
                   className="focus:outline-none border rounded-md py-2 px-2 mr-3"
                   name="rent_start_date"
@@ -112,7 +136,7 @@ const HousingListFilter = ({ housingList, filterHousingList, showModal, setFilte
                     });
                   }}
                 />
-              </div>
+              </div> */}
             </div>
             <button
               className="bg-purple-900 text-white uppercase text-xs px-4 py-2 rounded-full outline-none focus:outline-none mr-3 self-end"
@@ -130,6 +154,8 @@ const HousingListFilter = ({ housingList, filterHousingList, showModal, setFilte
                   rent_start_date: '',
                   rent_end_date: ''
                 }; // set values back to initial state
+                setStart(null);
+                setEnd(null);
                 filterHousingList(values);
                 campusAreaSelectRef.current.select.clearValue();
                 roomTypeSelectRef.current.select.clearValue();
