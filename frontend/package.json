@@ -26,6 +26,7 @@
     "postcss": "^8.2.4",
     "postcss-cli": "^8.3.1",
     "react": "^17.0.1",
+    "react-copy-to-clipboard": "^5.0.3",
     "react-dom": "^17.0.1",
     "react-dropzone": "^11.3.1",
     "react-facebook-login": "^4.1.1",

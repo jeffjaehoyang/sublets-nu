@@ -124,7 +124,7 @@ export const Description = styled.div`
   height: max-content;
 `;
 
-export const ContactBtn = styled(Link)`
-  ${tw`flex justify-center items-center uppercase font-medium sm:text-sm h-12 px-4 text-purple-800 border-2 rounded-md border-purple-800 mx-auto sm:mx-0`}
+export const ContactBtn = styled.button`
+  ${tw`flex justify-center items-center uppercase font-medium sm:text-sm h-12 px-4 text-purple-800 border-2 rounded-md border-purple-800 mx-auto sm:mx-0 sm:mr-4 hover:bg-purple-50 focus:outline-none`}
   width: fit-content;
 `;

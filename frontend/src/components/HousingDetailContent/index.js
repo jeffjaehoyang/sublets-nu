@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as Styled from './styles';
 import Icon from '../../icons';
 import ImageGallery from 'react-image-gallery';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import GoogleMapsContainer from '../Container/GoogleMapsContainer';
 import GoogleMapReact from 'google-map-react';
 import { createMapOptions, GOOGLE_MAPS_API_KEY, warningRed } from '../../constants';
@@ -9,6 +10,8 @@ import PointMarker from '../PointMarker';
 import { formatDate } from '../../utils';
 
 const HousingDetailContent = ({ housing }) => {
+  const [showCopyText, setShowCopyText] = useState(false);
+
   const images_list = housing.images.map((image) => {
     return {
       original: image.img,
@@ -149,15 +152,10 @@ const HousingDetailContent = ({ housing }) => {
               </Styled.UserNegotiate>
             </div>
           </Styled.UserName>
-          <Styled.ContactBtn
-            to="#"
-            onClick={(e) => {
-              e.preventDefault();
-              window.location.href = housing.uploader.email;
-            }}
-          >
-            Contact
-          </Styled.ContactBtn>
+          <CopyToClipboard text={housing.uploader.email} onCopy={() => setShowCopyText(true)}>
+            <Styled.ContactBtn>Contact</Styled.ContactBtn>
+          </CopyToClipboard>
+          {showCopyText ? <div className="text-sm font-normal text-purple-800">Email Address Copied!</div> : null}
         </Styled.ProfileInfoWrapper>
         <Styled.GoogleMapsWrapper>
           <GoogleMapsContainer height="50vh" alwaysDisplay={true}>
