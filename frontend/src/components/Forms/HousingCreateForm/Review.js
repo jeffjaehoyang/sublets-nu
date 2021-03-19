@@ -103,7 +103,11 @@ const Review = ({ values, setStep, errors }) => {
                   default:
                     return (
                       <Fragment key={field}>
-                        <FormField>{`${fieldToLabelMap[field]}: ${values[field]}`}</FormField>
+                        <FormField>
+                          {['rent_start_date', 'rent_end_date'].includes(field)
+                            ? `${fieldToLabelMap[field]}: ${values[field].format('MM/DD/YYYY')}`
+                            : `${fieldToLabelMap[field]}: ${values[field]}`}
+                        </FormField>
                         <ErrorMessage className="text-red-500 text-xs" component="div" name={field} />
                       </Fragment>
                     );

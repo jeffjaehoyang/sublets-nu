@@ -15,7 +15,7 @@ const renderStep = (step, values, errors, touched, setFieldValue, setStep) => {
     case 2:
       return <StepTwo setFieldValue={setFieldValue} />;
     case 3:
-      return <StepThree />;
+      return <StepThree setFieldValue={setFieldValue} values={values} />;
     case 4:
       return <StepFour setFieldValue={setFieldValue} values={values} />;
     case 5:

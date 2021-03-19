@@ -39,7 +39,6 @@ const HousingListFilter = ({ housingList, filterHousingList, showModal, setFilte
           try {
             values.rent_start_date = values.rent_start_date.format('YYYY-MM-DD');
             values.rent_end_date = values.rent_end_date.format('YYYY-MM-DD');
-            console.log('filter with values: ', values);
             filterHousingList(values);
           } catch (e) {
             console.log(e);

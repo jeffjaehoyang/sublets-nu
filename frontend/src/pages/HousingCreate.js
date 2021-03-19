@@ -63,6 +63,8 @@ const HousingCreateForm = () => {
           onSubmit={(values, { setSubmitting }) => {
             try {
               setIsUploading(true);
+              values.rent_start_date = values.rent_start_date.format('YYYY-MM-DD');
+              values.rent_end_date = values.rent_end_date.format('YYYY-MM-DD');
               createHousing(values).then((housing) => {
                 setCreatedHousing(housing);
                 setFireRedirect(true);

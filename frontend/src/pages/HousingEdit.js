@@ -16,6 +16,10 @@ import store from '../context/store';
 import Icon from '../icons';
 import { useLocation } from 'react-router-dom';
 import AddressAutocomplete from '../components/AddressAutocomplete';
+import 'react-dates/initialize';
+import { DateRangePicker } from 'react-dates';
+import 'react-dates/lib/css/_datepicker.css';
+import moment from 'moment';
 
 const animatedComponents = makeAnimated();
 
@@ -46,6 +50,9 @@ const HousingCreateForm = () => {
     images: [],
     amenities: []
   });
+  const [focusedInput, setFocusedInput] = useState(null);
+  const [start, setStart] = useState(null);
+  const [end, setEnd] = useState(null);
   const pathname = useLocation();
 
   useEffect(() => {
@@ -93,7 +100,10 @@ const HousingCreateForm = () => {
       deleteFromOriginal: [],
       amenities: housing?.amenities.map((amenity) => amenity.id)
     });
+    setStart(moment(housing?.rent_start_date, 'YYYY-MM-DD'));
+    setEnd(moment(housing?.rent_end_date, 'YYYY-MM-DD'));
   }, [housing]);
+  const orientation = window.matchMedia('(max-width: 700px)').matches ? 'vertical' : 'horizontal';
 
   const handleDelete = (values, file) => {
     values.images = values.images.filter((item) => item !== file);
@@ -127,6 +137,12 @@ const HousingCreateForm = () => {
             try {
               setIsUploading(true);
               values.deleteFromOriginal = toDelete;
+              if (typeof values.rent_start_date !== 'string') {
+                values.rent_start_date = values.rent_start_date.format('YYYY-MM-DD');
+              }
+              if (typeof values.rent_end_date !== 'string') {
+                values.rent_end_date = values.rent_end_date.format('YYYY-MM-DD');
+              }
               updateHousing(values, housing.id).then((updatedHousing) => {
                 setFireRedirect(true);
                 store.dispatch(fetchHousingListAction());
@@ -193,6 +209,25 @@ const HousingCreateForm = () => {
               </>
               <>
                 <label className="mt-3" htmlFor="rent_start_date">
+                  Dates
+                </label>
+                <DateRangePicker
+                  startDate={start}
+                  startDateId="startDate"
+                  endDate={end}
+                  endDateId="endDate"
+                  onDatesChange={({ startDate, endDate }) => {
+                    setStart(startDate);
+                    setEnd(endDate);
+                    setFieldValue('rent_start_date', startDate);
+                    setFieldValue('rent_end_date', endDate);
+                  }}
+                  focusedInput={focusedInput}
+                  onFocusChange={(focusedInput) => setFocusedInput(focusedInput)}
+                  orientation={orientation}
+                  withPortal={orientation === 'vertical'}
+                />
+                {/* <label className="mt-3" htmlFor="rent_start_date">
                   Rent Start Date
                 </label>
                 <Field
@@ -210,7 +245,7 @@ const HousingCreateForm = () => {
                   name="rent_end_date"
                   type="date"
                 />
-                <ErrorMessage className="text-red-500 text-xs" component="div" name="rent_end_date" />
+                <ErrorMessage className="text-red-500 text-xs" component="div" name="rent_end_date" /> */}
               </>
               <>
                 <div className="flex items-center justify-between">
