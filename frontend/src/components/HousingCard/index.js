@@ -4,8 +4,9 @@ import Icon from '../../icons';
 import * as Styled from './styles';
 import { saveHousingAction, unsaveHousingAction, fetchSavedHousingAction } from '../../actions/housing';
 import { formatDate } from '../../utils';
-import { roomTypeMapping } from '../../constants';
+import { AWS_API_ENDPOINT, roomTypeMapping, THUMBNAIL_SIZE } from '../../constants';
 import { showModal } from '../../actions/modal';
+import axios from 'axios';
 
 const HousingCard = ({
   isAuthenticated,
@@ -20,7 +21,16 @@ const HousingCard = ({
   const [isSaved, setIsSaved] = useState(false);
   const [mainImage, setMainImage] = useState(null);
   useEffect(() => {
-    if (housing.images.length) setMainImage(housing.images[0].img);
+    if (process.env.NODE_ENV === 'production' && housing.images[0].length) {
+      console.log(housing.images[0].img);
+      const [host, obscureFilepath] = housing.images[0].img.split('housing_pic');
+      const filepath = obscureFilepath.split('?')[0];
+      setMainImage(`${AWS_API_ENDPOINT}?size=${THUMBNAIL_SIZE}&key=housing_pic${filepath}`);
+    } else if (housing.images.length) {
+      console.log(housing.images[0].img);
+      setMainImage(housing.images[0].img);
+    }
+
     setIsSaved(savedHousingList?.map((h) => h.id).includes(housing.id));
   }, [savedHousingList, housing.id]);
 
