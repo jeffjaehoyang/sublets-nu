@@ -8,7 +8,7 @@ export const GOOGLE_MAPS_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 export const AWS_API_ENDPOINT = process.env.REACT_APP_AWS_API_ENDPOINT;
 
 export const BLUR_SIZE = '50x50';
-export const THUMBNAIL_SIZE = '300x300';
+export const THUMBNAIL_SIZE = '450x450';
 export const MIDDLE_DEFINITION_SIZE = '1000x1000';
 export const HIGH_DEFINITION_SIZE = '2000x2000';
 
