@@ -4,8 +4,9 @@ import Icon from '../../icons';
 import * as Styled from './styles';
 import { saveHousingAction, unsaveHousingAction, fetchSavedHousingAction } from '../../actions/housing';
 import { formatDate } from '../../utils';
-import { AWS_API_ENDPOINT, roomTypeMapping, THUMBNAIL_SIZE } from '../../constants';
+import { AWS_API_ENDPOINT, BLUR_SIZE, roomTypeMapping, THUMBNAIL_SIZE } from '../../constants';
 import { showModal } from '../../actions/modal';
+import ProgressiveImg from '../ProgressiveImg';
 import axios from 'axios';
 
 const HousingCard = ({
@@ -20,17 +21,17 @@ const HousingCard = ({
 }) => {
   const [isSaved, setIsSaved] = useState(false);
   const [mainImage, setMainImage] = useState(null);
+  const [smallImage, setSmallImage] = useState(null);
+
   useEffect(() => {
     if (process.env.NODE_ENV === 'production' && housing.images.length) {
-      console.log(housing.images[0].img);
       const [host, obscureFilepath] = housing.images[0].img.split('housing_pic');
       const filepath = obscureFilepath.split('?')[0];
+      setSmallImage(`${AWS_API_ENDPOINT}?size=${BLUR_SIZE}&key=housing_pic${filepath}`);
       setMainImage(`${AWS_API_ENDPOINT}?size=${THUMBNAIL_SIZE}&key=housing_pic${filepath}`);
     } else if (housing.images.length) {
-      console.log(housing.images[0].img);
       setMainImage(housing.images[0].img);
     }
-
     setIsSaved(savedHousingList?.map((h) => h.id).includes(housing.id));
   }, [savedHousingList, housing.id]);
 
@@ -74,7 +75,7 @@ const HousingCard = ({
           </Styled.SaveBtn>
         )}
         <Styled.HousingImage>
-          <img src={mainImage} alt={'housing'} />
+          <ProgressiveImg smallSrc={smallImage} largeSrc={mainImage} alt={'housing'} />
         </Styled.HousingImage>
         <Styled.HousingInfo>
           <Styled.Title to={`/housing/${housing.id}`}>{housing.title}</Styled.Title>
