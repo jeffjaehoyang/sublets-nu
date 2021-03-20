@@ -5,19 +5,46 @@ import ImageGallery from 'react-image-gallery';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import GoogleMapsContainer from '../Container/GoogleMapsContainer';
 import GoogleMapReact from 'google-map-react';
-import { createMapOptions, GOOGLE_MAPS_API_KEY, warningRed } from '../../constants';
+import {
+  AWS_API_ENDPOINT,
+  BLUR_SIZE,
+  createMapOptions,
+  GOOGLE_MAPS_API_KEY,
+  HIGH_DEFINITION_SIZE,
+  THUMBNAIL_SIZE,
+  warningRed
+} from '../../constants';
 import PointMarker from '../PointMarker';
 import { formatDate } from '../../utils';
+import ProgressiveImg from '../ProgressiveImg';
 
 const HousingDetailContent = ({ housing }) => {
   const [showCopyText, setShowCopyText] = useState(false);
 
+  const _renderItem = (smallSrc, largeSrc) => {
+    return <ProgressiveImg className={'sliderimg'} smallSrc={smallSrc} largeSrc={largeSrc} alt={'housing'} />;
+  };
+
   const images_list = housing.images.map((image) => {
-    return {
-      original: image.img,
-      thumbnail: image.img,
-      originalClass: 'sliderimg'
-    };
+    if (process.env.NODE_ENV === 'production') {
+      const [_, obscureFilepath] = image.img.split('housing_pic');
+      const filepath = obscureFilepath.split('?')[0];
+      const smallSrc = `${AWS_API_ENDPOINT}?size=${BLUR_SIZE}&key=housing_pic${filepath}`;
+      const largeSrc = `${AWS_API_ENDPOINT}?size=${HIGH_DEFINITION_SIZE}&key=housing_pic${filepath}`;
+      const thumbnailSrc = `${AWS_API_ENDPOINT}?size=${THUMBNAIL_SIZE}&key=housing_pic${filepath}`;
+      return {
+        original: largeSrc,
+        thumbnail: thumbnailSrc,
+        originalClass: 'sliderimg',
+        renderItem: () => _renderItem(smallSrc, largeSrc)
+      };
+    } else {
+      return {
+        original: image.img,
+        thumbnail: image.img,
+        originalClass: 'sliderimg'
+      };
+    }
   });
   const images = images_list;
 
