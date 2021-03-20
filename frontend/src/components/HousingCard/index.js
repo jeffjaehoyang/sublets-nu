@@ -21,7 +21,7 @@ const HousingCard = ({
   const [isSaved, setIsSaved] = useState(false);
   const [mainImage, setMainImage] = useState(null);
   useEffect(() => {
-    if (process.env.NODE_ENV === 'production' && housing.images[0].length) {
+    if (process.env.NODE_ENV === 'production' && housing.images.length) {
       console.log(housing.images[0].img);
       const [host, obscureFilepath] = housing.images[0].img.split('housing_pic');
       const filepath = obscureFilepath.split('?')[0];
