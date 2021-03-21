@@ -44,7 +44,7 @@ const FilterModal = ({ activeFilters, setFilters, hideModal, filterHousingList }
       >
         {({ setFieldValue, values, errors, touched }) => (
           <Form className="flex flex-col w-full sm:w-96 mx-auto items-center">
-            <div className="flex flex-col w-full mt-3 flex sm:hidden">
+            {/* <div className="flex flex-col w-full mt-3 flex sm:hidden">
               <div className="uppercase text-gray-400 text-xs">Room Type</div>
               <Select
                 name="room_type"
@@ -63,7 +63,7 @@ const FilterModal = ({ activeFilters, setFilters, hideModal, filterHousingList }
                 className="flex-1"
                 placeholder="Room Type"
               />
-            </div>
+            </div> */}
 
             <div className="flex flex-col w-full mt-3 flex sm:hidden">
               <div className="uppercase text-gray-400 text-xs">Campus Area</div>

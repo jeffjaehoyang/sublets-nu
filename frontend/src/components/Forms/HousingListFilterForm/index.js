@@ -37,8 +37,10 @@ const HousingListFilter = ({ housingList, filterHousingList, showModal, setFilte
         initialValues={formData}
         onSubmit={(values, { setSubmitting }) => {
           try {
-            values.rent_start_date = values.rent_start_date.format('YYYY-MM-DD');
-            values.rent_end_date = values.rent_end_date.format('YYYY-MM-DD');
+            if (typeof values.rent_start_date !== 'string')
+              values.rent_start_date = values.rent_start_date.format('YYYY-MM-DD');
+            if (typeof values.rent_end_date !== 'string')
+              values.rent_end_date = values.rent_end_date.format('YYYY-MM-DD');
             filterHousingList(values);
           } catch (e) {
             console.log(e);
