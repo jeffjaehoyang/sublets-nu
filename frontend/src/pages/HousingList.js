@@ -9,7 +9,6 @@ import GoogleMapReact from 'google-map-react';
 import PointMarker from '../components/PointMarker';
 import { createMapOptions, GOOGLE_MAPS_API_KEY } from '../constants';
 import listing_not_found_img from '../images/listing_not_found.svg';
-// import InfiniteScroll from 'react-infinite-scroll-component';
 
 const EmptyList = () => {
   return (

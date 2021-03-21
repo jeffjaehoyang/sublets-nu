@@ -227,25 +227,6 @@ const HousingCreateForm = () => {
                   orientation={orientation}
                   withPortal={orientation === 'vertical'}
                 />
-                {/* <label className="mt-3" htmlFor="rent_start_date">
-                  Rent Start Date
-                </label>
-                <Field
-                  className="focus:outline-none border rounded-md py-2 px-3 text-grey-darkest"
-                  name="rent_start_date"
-                  type="date"
-                />
-                <ErrorMessage className="text-red-500 text-xs" component="div" name="rent_start_date" />
-
-                <label className="mt-3" htmlFor="rent_end_date">
-                  Rent End Date
-                </label>
-                <Field
-                  className="focus:outline-none border rounded-md py-2 px-3 text-grey-darkest"
-                  name="rent_end_date"
-                  type="date"
-                />
-                <ErrorMessage className="text-red-500 text-xs" component="div" name="rent_end_date" /> */}
               </>
               <>
                 <div className="flex items-center justify-between">

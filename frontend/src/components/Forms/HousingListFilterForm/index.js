@@ -111,33 +111,6 @@ const HousingListFilter = ({ housingList, filterHousingList, showModal, setFilte
                 focusedInput={focusedInput}
                 onFocusChange={(focusedInput) => setFocusedInput(focusedInput)}
               />
-              {/* <div className="flex flex-row items-center">
-                <Field
-                  className="focus:outline-none border rounded-md py-2 px-2 mr-3"
-                  name="rent_start_date"
-                  type="date"
-                  onChange={(event) => {
-                    setFieldValue('rent_start_date', event.target.value);
-                    setFilters({
-                      ...values,
-                      rent_start_date: event.target.value
-                    });
-                  }}
-                />
-                <Icon icon={['fal', 'long-arrow-right']} className="mr-3" />
-                <Field
-                  className="focus:outline-none border rounded-md py-2 px-2 mr-3"
-                  name="rent_end_date"
-                  type="date"
-                  onChange={(event) => {
-                    setFieldValue('rent_end_date', event.target.value);
-                    setFilters({
-                      ...values,
-                      rent_end_date: event.target.value
-                    });
-                  }}
-                />
-              </div> */}
             </div>
             <button
               className="bg-purple-900 text-white uppercase text-xs px-4 py-2 rounded-full outline-none focus:outline-none mr-3 self-end"

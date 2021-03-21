@@ -7,8 +7,6 @@ import { formatDate } from '../../utils';
 import { AWS_API_ENDPOINT, BLUR_SIZE, roomTypeMapping, THUMBNAIL_SIZE } from '../../constants';
 import { showModal } from '../../actions/modal';
 import ProgressiveImg from '../ProgressiveImg';
-import axios from 'axios';
-import { deleteHousing } from '../../api';
 
 const HousingCard = ({
   isAuthenticated,
@@ -62,7 +60,6 @@ const HousingCard = ({
       },
       'delete_housing'
     );
-    // deleteHousing(housing.id);
   };
 
   return (

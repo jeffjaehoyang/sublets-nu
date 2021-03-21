@@ -11,7 +11,6 @@ import { fetchHousingListAction } from '../actions/housing';
 import store from '../context/store';
 
 const HousingCreateForm = () => {
-  // const [imageMain, setImageMain] = useState(null);
   const [step, setStep] = useState(0);
   const [isUploading, setIsUploading] = useState(false);
   const [createdHousing, setCreatedHousing] = useState(null);

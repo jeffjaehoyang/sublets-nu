@@ -67,13 +67,14 @@ const HousingDetailContent = ({ housing }) => {
             </button>
           );
         }}
-        renderFullscreenButton={(onClick, isFullscreen) => {
-          return (
-            <button className={`image-gallery-fullscreen-button${isFullscreen ? ' active' : ''}`} onClick={onClick}>
-              <Icon icon={['far', 'expand-wide']} style={{ width: '40px', height: '40px', color: 'white' }} />
-            </button>
-          );
-        }}
+        showFullscreenButton={false}
+        // renderFullscreenButton={(onClick, isFullscreen) => {
+        //   return (
+        //     <button className={`image-gallery-fullscreen-button${isFullscreen ? ' active' : ''}`} onClick={onClick}>
+        //       <Icon icon={['far', 'expand-wide']} style={{ width: '40px', height: '40px', color: 'white' }} />
+        //     </button>
+        //   );
+        // }}
       />
       <Styled.Wrapper>
         <Styled.RowWrap>
