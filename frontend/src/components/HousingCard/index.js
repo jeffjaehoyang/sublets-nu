@@ -8,6 +8,7 @@ import { AWS_API_ENDPOINT, BLUR_SIZE, roomTypeMapping, THUMBNAIL_SIZE } from '..
 import { showModal } from '../../actions/modal';
 import ProgressiveImg from '../ProgressiveImg';
 import axios from 'axios';
+import { deleteHousing } from '../../api';
 
 const HousingCard = ({
   isAuthenticated,
@@ -53,6 +54,17 @@ const HousingCard = ({
     }
   };
 
+  const handleDelete = () => {
+    showModal(
+      {
+        open: true,
+        housing_id: housing.id
+      },
+      'delete_housing'
+    );
+    // deleteHousing(housing.id);
+  };
+
   return (
     <Styled.HousingCard
       onMouseEnter={() => setHoveredHousing && setHoveredHousing(housing.id)}
@@ -73,6 +85,14 @@ const HousingCard = ({
               />
             )}
           </Styled.SaveBtn>
+        )}
+        {isMyListing && (
+          <Styled.DeleteBtn onClick={handleDelete}>
+            <Icon
+              icon={['fad', 'trash-alt']}
+              style={{ padding: '1px', width: '25px', height: '25px', color: '#f6685e' }}
+            />
+          </Styled.DeleteBtn>
         )}
         <Styled.HousingImage>
           <ProgressiveImg smallSrc={smallImage} largeSrc={mainImage} alt={'housing'} />

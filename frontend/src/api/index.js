@@ -137,6 +137,12 @@ export const updateHousing = async (data, id) => {
   return response.data;
 };
 
+export const deleteHousing = async (housingId) => {
+  // AUTH REQUIRED
+  const response = await axios.delete(`/api/housing/delete/${housingId}`);
+  return response;
+};
+
 export const addSaved = async (data) => {
   // AUTH REQUIRED
   try {

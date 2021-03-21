@@ -63,7 +63,8 @@ import {
   faExclamationCircle,
   faUserFriends,
   faCalendarCheck,
-  faMapPin
+  faMapPin,
+  faTrashAlt
 } from '@fortawesome/pro-duotone-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -127,7 +128,8 @@ library.add(
   faExclamationCircle,
   faUserFriends,
   faCalendarCheck,
-  faMapPin
+  faMapPin,
+  faTrashAlt
 );
 
 const Icon = ({ ...props }) => <FontAwesomeIcon {...props} />;

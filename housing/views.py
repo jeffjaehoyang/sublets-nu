@@ -91,6 +91,30 @@ class HousingCreate(generics.CreateAPIView):
             HousingImage.objects.create(housing=housing_instance, img=img)
 
 
+class HousingDelete(generics.DestroyAPIView):
+    """
+    Delete Housing Listing
+    """
+
+    # default permission class : permissions.isAuthorized
+    # no serializer is required
+    queryset = Housing.objects.all()
+    lookup_field = "id"
+
+    def destroy(self, request, id):
+        """
+        By default, DestroyAPIView deletes the product from db.
+        Here we check to make sure that the uploader and the person trying to delete are the same
+        """
+        housing = Housing.objects.get(id=id)
+        if self.request.user != housing.uploader:
+            return Response(
+                data="Only the uploader can delete the post", status=401
+            )
+        else:
+            housing.delete()  # delete specified housing object from db
+            return Response(status=200)
+
 class HousingUpdate(generics.UpdateAPIView):
     # default permission class : permssions.isAuthorized
     queryset = Housing.objects.all()

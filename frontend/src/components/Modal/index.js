@@ -8,7 +8,8 @@ ReactModal.setAppElement('#root');
 
 const MODAL_TYPES = {
   login: modalTypes.LoginModal,
-  filter: modalTypes.FilterModal
+  filter: modalTypes.FilterModal,
+  delete_housing: modalTypes.DeleteHousingModal
 };
 
 const ModalWrapper = ({ hideModal, modalProps, modalType }) => {
@@ -35,7 +36,7 @@ const ModalWrapper = ({ hideModal, modalProps, modalType }) => {
       overlayClassName="myoverlay"
       closeTimeoutMS={500}
     >
-      <SpecifiedModal />
+      <SpecifiedModal housing_id={modalProps.housing_id} />
     </ReactModal>
   );
 };

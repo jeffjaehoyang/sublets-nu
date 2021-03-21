@@ -75,3 +75,14 @@ export const EditBtn = styled(Link)`
   ${tw`flex justify-center items-center uppercase font-medium sm:text-sm py-1 px-4 text-indigo-600 bg-indigo-100 border rounded-md border-indigo-500`}
   width: fit-content;
 `;
+
+export const DeleteBtn = styled.button`
+  ${tw`flex justify-center items-center rounded-full ml-0 sm:ml-8 sm:mt-0 focus:outline-none`}
+  background-color: rgba(253, 236, 234, 0.7);
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 10;
+`;
