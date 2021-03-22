@@ -10,7 +10,7 @@ import {
   BLUR_SIZE,
   createMapOptions,
   GOOGLE_MAPS_API_KEY,
-  HIGH_DEFINITION_SIZE,
+  MIDDLE_DEFINITION_SIZE,
   THUMBNAIL_SIZE,
   warningRed
 } from '../../constants';
@@ -30,7 +30,7 @@ const HousingDetailContent = ({ housing }) => {
       const [_, obscureFilepath] = image.img.split('housing_pic');
       const filepath = obscureFilepath.split('?')[0];
       const smallSrc = `${AWS_API_ENDPOINT}?size=${BLUR_SIZE}&key=housing_pic${filepath}`;
-      const largeSrc = `${AWS_API_ENDPOINT}?size=${HIGH_DEFINITION_SIZE}&key=housing_pic${filepath}`;
+      const largeSrc = `${AWS_API_ENDPOINT}?size=${MIDDLE_DEFINITION_SIZE}&key=housing_pic${filepath}`;
       const thumbnailSrc = `${AWS_API_ENDPOINT}?size=${THUMBNAIL_SIZE}&key=housing_pic${filepath}`;
       return {
         original: largeSrc,
