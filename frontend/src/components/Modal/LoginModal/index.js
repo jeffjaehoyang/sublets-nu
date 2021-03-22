@@ -11,13 +11,7 @@ import { warningRed } from '../../../constants';
 
 const LoginModal = ({ hideModal, googleLogin, facebookLogin, isAuthenticated }) => {
   const handleSocialLogin = (response) => {
-    console.log('handle social login response', response);
-    // if (response?.profileObj?.email) {
-    //   if (!response?.profileObj?.email.endsWith('northwestern.edu')) hideModal();
-    //   return;
-    // }
     try {
-      console.log('trying google login');
       googleLogin(response);
       // facebookLogin(response);
     } catch (e) {

@@ -5,7 +5,6 @@ import { showModal } from '../../actions/modal';
 import HousingList from '../../pages/HousingList';
 
 const PrivateRoute = ({ loading, isAuthenticated, showModal, path, component }) => {
-  console.log('private route : ', isAuthenticated, loading);
   useEffect(() => {
     if (!isAuthenticated && !loading)
       showModal(

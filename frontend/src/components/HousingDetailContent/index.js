@@ -183,7 +183,11 @@ const HousingDetailContent = ({ housing }) => {
           <CopyToClipboard text={housing.uploader.email} onCopy={() => setShowCopyText(true)}>
             <Styled.ContactBtn>Contact</Styled.ContactBtn>
           </CopyToClipboard>
-          {showCopyText ? <div className="text-sm font-normal text-purple-800">Email Address Copied!</div> : null}
+          {showCopyText ? (
+            <div className="text-sm font-normal mx-auto sm:mx-0 mt-4 sm:mt-0 text-purple-800">
+              Email Address Copied!
+            </div>
+          ) : null}
         </Styled.ProfileInfoWrapper>
         <Styled.GoogleMapsWrapper>
           <GoogleMapsContainer height="50vh" alwaysDisplay={true}>

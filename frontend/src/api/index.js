@@ -7,11 +7,9 @@ const localStorageService = LocalStorageService.getService();
 
 axios.interceptors.request.use((config) => {
   if (config.url.includes('/api/auth/convert-token')) {
-    console.log('convert-token request intercepted');
     return config;
   }
   if (config.data && config.data.grant_type && config.data.grant_type === 'refresh_token') {
-    console.log('refresh token intercepted');
     return config;
   }
   const token = localStorage.getItem('access_token');
@@ -25,20 +23,13 @@ axios.interceptors.response.use(
   },
   async function (error) {
     const originalRequest = error.config;
-    console.log('RESPONSE ERROR: ', error.response?.status);
-    console.log('ORIGINAL REQUEST: ', originalRequest);
-    // console.log(error);
     if ([400, 401].includes(error.response?.status) && originalRequest.url.includes(`/api/auth/token`)) {
-      console.log('login again please.');
-      console.log('dispatching login fail');
       store.dispatch({
         type: LOGIN_FAIL
       });
       return Promise.reject(error);
     }
     if ([401, 403].includes(error.response?.status) && !originalRequest._retry) {
-      console.log('retrying with refresh token');
-      console.log(localStorageService.getRefreshToken());
       originalRequest._retry = true;
       const newToken = await fetchAuthToken({
         refresh_token: localStorageService.getRefreshToken(),
@@ -181,7 +172,6 @@ export const fetchCurrentUser = async () => {
 export const fetchAuthToken = async (config) => {
   // AUTH REQUIRED
   const response = await axios.post(`/api/auth/token`, config);
-  console.log('fetched auth token', response);
   return response;
 };
 

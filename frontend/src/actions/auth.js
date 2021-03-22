@@ -6,7 +6,6 @@ const localStorageService = LocalStorageService.getService();
 
 export const checkAuthentication = () => async (dispatch) => {
   const access_token = localStorageService.getAccessToken();
-  console.log('checking auth state');
   if (access_token) {
     fetchCurrentUser()
       .then((res) => {
@@ -17,7 +16,6 @@ export const checkAuthentication = () => async (dispatch) => {
         });
       })
       .catch(async (e) => {
-        console.log('check auth with access token failed.');
         dispatch({
           type: LOGIN_FAIL
         });
@@ -26,7 +24,6 @@ export const checkAuthentication = () => async (dispatch) => {
 };
 
 export const googleLogin = (data) => async (dispatch) => {
-  console.log('login data', data);
   try {
     const config = {
       token: data.accessToken,
@@ -36,7 +33,6 @@ export const googleLogin = (data) => async (dispatch) => {
       client_secret: CLIENT_SECRET
     };
     const convertTokenResponse = await convertToken(config);
-    console.log('convert token response', convertTokenResponse);
     localStorageService.setToken(convertTokenResponse);
     const userInfo = await fetchCurrentUser();
     dispatch({
@@ -44,7 +40,6 @@ export const googleLogin = (data) => async (dispatch) => {
       payload: convertTokenResponse?.access_token,
       user: userInfo
     });
-    console.log('google login success!');
   } catch (e) {
     localStorageService.clearToken();
     console.log(e);
@@ -52,7 +47,6 @@ export const googleLogin = (data) => async (dispatch) => {
 };
 
 export const facebookLogin = (data) => async (dispatch) => {
-  console.log('login data', data);
   try {
     const config = {
       token: data.accessToken,
@@ -62,7 +56,6 @@ export const facebookLogin = (data) => async (dispatch) => {
       client_secret: CLIENT_SECRET
     };
     const convertTokenResponse = await convertToken(config);
-    console.log('convert token response', convertTokenResponse);
     localStorageService.setToken(convertTokenResponse);
     const userInfo = await fetchCurrentUser();
     dispatch({
@@ -70,7 +63,6 @@ export const facebookLogin = (data) => async (dispatch) => {
       payload: convertTokenResponse?.access_token,
       user: userInfo
     });
-    console.log('facebook login success!');
   } catch (e) {
     localStorageService.clearToken();
     console.log(e);
@@ -80,5 +72,4 @@ export const facebookLogin = (data) => async (dispatch) => {
 export const logout = () => (dispatch) => {
   localStorageService.clearToken();
   dispatch({ type: LOGOUT });
-  console.log('logout success!');
 };

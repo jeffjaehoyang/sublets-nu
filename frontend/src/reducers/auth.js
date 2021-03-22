@@ -27,7 +27,6 @@ const authReducer = (state = initialState, action) => {
       };
     case SIGNUP_FAIL:
     case LOGIN_FAIL:
-      console.log('login fail!!');
       return {
         ...state,
         isAuthenticated: false,
