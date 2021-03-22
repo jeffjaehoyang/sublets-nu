@@ -3,7 +3,7 @@ import tw from 'twin.macro';
 import { Link } from 'react-router-dom';
 
 export const HousingCard = styled.div`
-  ${tw`mb-5 p-4 bg-gray-50 rounded-lg text-gray-900 border-2 border-gray-50 hover:border-gray-300`};
+  ${tw`mb-5 p-4 bg-gray-50 rounded-lg text-gray-900 border-2 border-gray-50 hover:border-gray-300 w-full`};
 `;
 
 export const Wrapper = styled.div`
@@ -16,6 +16,12 @@ export const HousingImage = styled.div`
     ${tw`rounded-md w-full object-cover md:w-48`};
     height: 150px;
     object-fit: cover;
+  }
+  @media only screen and (max-width: 600px) {
+    img {
+      height: 170px;
+      width: 100%;
+    }
   }
 `;
 
