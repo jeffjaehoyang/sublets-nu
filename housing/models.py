@@ -42,6 +42,7 @@ class Housing(models.Model):
     room_type = models.CharField(max_length=100, choices=RoomType.choices)
     roommates = models.IntegerField()
     bathrooms = models.IntegerField()
+    view_count = models.IntegerField()
 
     # boolean fields
     is_negotiable = models.BooleanField(default=True)

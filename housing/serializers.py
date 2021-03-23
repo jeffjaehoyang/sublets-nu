@@ -37,6 +37,7 @@ class HousingSerializer(serializers.ModelSerializer):
             "campus_area",
             "saved_by",
             "images",
+            "view_count",
         ]
 
 

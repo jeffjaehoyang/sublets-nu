@@ -6,6 +6,8 @@ from .models import Housing, HousingImage, Amenity
 from rest_framework.parsers import FormParser, MultiPartParser
 from rest_framework import viewsets
 from rest_framework.settings import api_settings
+from rest_framework import status
+from django.db.models import F
 import datetime
 
 
@@ -108,12 +110,14 @@ class HousingDelete(generics.DestroyAPIView):
         """
         housing = Housing.objects.get(id=id)
         if self.request.user != housing.uploader:
-            return Response(
-                data="Only the uploader can delete the post", status=401
-            )
+            content = {
+                "error": "Only the uploader is authorized to delete the listing"
+            }
+            return Response(content, status=status.HTTP_401_UNAUTHORIZED)
         else:
             housing.delete()  # delete specified housing object from db
-            return Response(status=200)
+            return Response(status.HTTP_204_NO_CONTENT)
+
 
 class HousingUpdate(generics.UpdateAPIView):
     # default permission class : permssions.isAuthorized
@@ -172,6 +176,13 @@ class HousingDetail(generics.RetrieveAPIView):
     serializer_class = HousingDetailSerializer
     permission_classes = (permissions.AllowAny,)
     lookup_field = "id"
+
+    def retrieve(self, request, id, *args, **kwargs):
+        qs = Housing.objects.filter(id=id)
+        qs.update(view_count=F("view_count") + 1)
+        instance = qs[0]
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
 
 
 class HousingRoomTypeChoices(APIView):
