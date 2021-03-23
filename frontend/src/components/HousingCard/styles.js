@@ -25,6 +25,10 @@ export const HousingImage = styled.div`
   }
 `;
 
+export const Row = styled.div`
+  ${tw`flex flex-row justify-between items-center`}
+`;
+
 export const HousingInfo = styled.div`
   ${tw`relative flex flex-col md:ml-4`}
   width: 100%;
@@ -45,6 +49,12 @@ export const Price = styled.div`
 
 export const Date = styled.div`
   ${tw`mb-2`}
+`;
+
+export const ViewCount = styled.div`
+  ${tw`flex justify-center items-center font-normal text-xs px-1 py-1 rounded-md text-gray-700 bg-yellow-100 border`}
+  width: fit-content;
+  height: fit-content;
 `;
 
 export const RoomType = styled.div`

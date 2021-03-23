@@ -96,11 +96,15 @@ const HousingCard = ({
         </Styled.HousingImage>
         <Styled.HousingInfo>
           <Styled.Title to={`/housing/${housing.id}`}>{housing.title}</Styled.Title>
-          <Styled.Date>
-            Available starting <b>{formatDate(housing.rent_start_date)}</b>
-          </Styled.Date>
+          <Styled.Row>
+            <Styled.Date>
+              Available starting <b>{formatDate(housing.rent_start_date)}</b>
+            </Styled.Date>
+            <Styled.ViewCount>{housing.view_count} Views 🔥</Styled.ViewCount>
+          </Styled.Row>
           <Styled.Price>${housing.price}</Styled.Price>
           <div className="last-row flex flex-row justify-between items-center w-full">
+            {/* <Styled.RoomType>{housing.view_count} Views</Styled.RoomType> */}
             <Styled.RoomType>
               {roomTypeMapping[housing.room_type]} / {housing.bathrooms} BA
             </Styled.RoomType>
