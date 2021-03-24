@@ -43,7 +43,7 @@ export const Title = styled(Link)`
 `;
 
 export const Price = styled.div`
-  ${tw`flex justify-center items-center font-medium sm:text-sm py-1 px-4 rounded-full text-green-700 bg-green-100 border mb-2 border-green-500`}
+  ${tw`flex justify-center items-center font-medium sm:text-sm py-1 px-4 rounded-full text-green-700 bg-green-100 mb-2`}
   width: fit-content;
 `;
 
@@ -52,13 +52,13 @@ export const Date = styled.div`
 `;
 
 export const ViewCount = styled.div`
-  ${tw`flex justify-center items-center font-normal text-xs px-1 py-1 rounded-md text-gray-700 bg-yellow-100 border`}
+  ${tw`flex justify-center items-center font-normal text-xs px-1 py-1 rounded-md text-gray-700 bg-yellow-100`}
   width: fit-content;
   height: fit-content;
 `;
 
 export const RoomType = styled.div`
-  ${tw`flex justify-center items-center font-medium sm:text-sm py-1 px-4 rounded-full text-pink-700 bg-pink-100 border border-pink-300`}
+  ${tw`flex justify-center items-center font-medium sm:text-sm py-1 px-4 rounded-full text-pink-700 bg-pink-100`}
   width: fit-content;
 `;
 
@@ -83,12 +83,12 @@ export const SaveBtn = styled.button`
 `;
 
 export const ExploreBtn = styled(Link)`
-  ${tw`flex justify-center items-center uppercase font-medium sm:text-sm py-1 px-4 text-indigo-600 bg-indigo-100 border rounded-md border-indigo-500`}
+  ${tw`flex justify-center items-center uppercase font-medium sm:text-sm py-1 px-4 text-indigo-600 bg-indigo-100 rounded-md`}
   width: fit-content;
 `;
 
 export const EditBtn = styled(Link)`
-  ${tw`flex justify-center items-center uppercase font-medium sm:text-sm py-1 px-4 text-indigo-600 bg-indigo-100 border rounded-md border-indigo-500`}
+  ${tw`flex justify-center items-center uppercase font-medium sm:text-sm py-1 px-4 text-indigo-600 bg-indigo-100 rounded-md`}
   width: fit-content;
 `;
 
