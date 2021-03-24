@@ -68,6 +68,7 @@ const HousingDetailContent = ({ housing }) => {
           );
         }}
         showFullscreenButton={false}
+        showThumbnails={false}
         // renderFullscreenButton={(onClick, isFullscreen) => {
         //   return (
         //     <button className={`image-gallery-fullscreen-button${isFullscreen ? ' active' : ''}`} onClick={onClick}>
