@@ -4,7 +4,7 @@ import Icon from '../../icons';
 import * as Styled from './styles';
 import { saveHousingAction, unsaveHousingAction, fetchSavedHousingAction } from '../../actions/housing';
 import { formatDate } from '../../utils';
-import { AWS_API_ENDPOINT, BLUR_SIZE, roomTypeMapping, THUMBNAIL_SIZE } from '../../constants';
+import { AWS_API_ENDPOINT, BLUR_SIZE, roomTypeMapping, softRed, THUMBNAIL_SIZE } from '../../constants';
 import { showModal } from '../../actions/modal';
 import ProgressiveImg from '../ProgressiveImg';
 
@@ -71,15 +71,9 @@ const HousingCard = ({
         {!isMyListing && (
           <Styled.SaveBtn onClick={handleSave}>
             {isSaved ? (
-              <Icon
-                icon={['fas', 'heart']}
-                style={{ padding: '1px', width: '25px', height: '25px', color: '#f6685e' }}
-              />
+              <Icon icon={['fas', 'heart']} style={{ padding: '1px', width: '25px', height: '25px', color: softRed }} />
             ) : (
-              <Icon
-                icon={['fal', 'heart']}
-                style={{ padding: '1px', width: '25px', height: '25px', color: '#f6685e' }}
-              />
+              <Icon icon={['fal', 'heart']} style={{ padding: '1px', width: '25px', height: '25px', color: softRed }} />
             )}
           </Styled.SaveBtn>
         )}
@@ -87,7 +81,7 @@ const HousingCard = ({
           <Styled.DeleteBtn onClick={handleDelete}>
             <Icon
               icon={['fad', 'trash-alt']}
-              style={{ padding: '1px', width: '25px', height: '25px', color: '#f6685e' }}
+              style={{ padding: '1px', width: '25px', height: '25px', color: softRed }}
             />
           </Styled.DeleteBtn>
         )}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as Styled from './styles';
 import Icon from '../../icons';
 import ImageGallery from 'react-image-gallery';
@@ -11,15 +11,34 @@ import {
   createMapOptions,
   GOOGLE_MAPS_API_KEY,
   MIDDLE_DEFINITION_SIZE,
+  softRed,
   THUMBNAIL_SIZE,
   warningRed
 } from '../../constants';
 import PointMarker from '../PointMarker';
 import { formatDate } from '../../utils';
 import ProgressiveImg from '../ProgressiveImg';
+import { saveHousingAction, unsaveHousingAction } from '../../actions/housing';
+import { showModal } from '../../actions/modal';
+import { connect } from 'react-redux';
 
-const HousingDetailContent = ({ housing }) => {
+const HousingDetailContent = ({ housing, savedHousingList, addSaved, removeSaved, showModal }) => {
   const [showCopyText, setShowCopyText] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
+
+  useEffect(() => {
+    setIsSaved(savedHousingList?.map((h) => h.id).includes(housing.id));
+  });
+
+  const handleSave = () => {
+    if (!isSaved) {
+      setIsSaved(true);
+      addSaved({ housing: housing.id });
+    } else {
+      setIsSaved(false);
+      removeSaved({ data: { housing: housing.id } });
+    }
+  };
 
   const _renderItem = (smallSrc, largeSrc) => {
     return <ProgressiveImg className={'sliderimg'} smallSrc={smallSrc} largeSrc={largeSrc} alt={'housing'} />;
@@ -80,9 +99,24 @@ const HousingDetailContent = ({ housing }) => {
       <Styled.Wrapper>
         <Styled.RowWrap>
           <Styled.HousingInfoWrapper>
-            <Styled.CampusArea>
-              {housing.campus_area}, {housing.city}
-            </Styled.CampusArea>
+            <div className="flex flex-row w-full justify-between items-center">
+              <Styled.CampusArea>
+                {housing.campus_area}, {housing.city}
+              </Styled.CampusArea>
+              <Styled.SaveBtn onClick={handleSave}>
+                {isSaved ? (
+                  <>
+                    <Icon icon={['fas', 'heart']} style={{ marginRight: '5px', color: softRed }} />
+                    Unsave
+                  </>
+                ) : (
+                  <>
+                    <Icon icon={['fal', 'heart']} style={{ marginRight: '5px', color: softRed }} />
+                    Save
+                  </>
+                )}
+              </Styled.SaveBtn>
+            </div>
             <Styled.Title>{housing.title}</Styled.Title>
             <Styled.Address>
               <Icon icon={['fad', 'map-marked-alt']} style={{ marginRight: '5px' }} />
@@ -219,4 +253,23 @@ const HousingDetailContent = ({ housing }) => {
   );
 };
 
-export default HousingDetailContent;
+const mapStateToProps = (state) => ({
+  savedHousingList: state.housing.savedHousingList
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  // fetchSaved: () => {
+  //   dispatch(fetchSavedHousingAction());
+  // },
+  addSaved: (data) => {
+    dispatch(saveHousingAction(data));
+  },
+  removeSaved: (data) => {
+    dispatch(unsaveHousingAction(data));
+  },
+  showModal: (modalProps, modalType) => {
+    dispatch(showModal({ modalProps, modalType }));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(HousingDetailContent);

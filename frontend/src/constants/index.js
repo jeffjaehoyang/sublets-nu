@@ -235,3 +235,4 @@ export const createMapOptions = (maps) => {
 };
 
 export const warningRed = '#DB4437';
+export const softRed = '#f6685e';

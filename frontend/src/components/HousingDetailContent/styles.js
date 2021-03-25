@@ -19,7 +19,7 @@ export const RightWrapper = styled.div`
 `;
 
 export const HousingInfoWrapper = styled.div`
-  ${tw`flex flex-col sm:mr-4`}
+  ${tw`flex flex-col sm:mr-4 w-full`}
 `;
 
 export const ProfileInfoWrapper = styled.div`
@@ -127,4 +127,10 @@ export const Description = styled.div`
 export const ContactBtn = styled.button`
   ${tw`flex justify-center items-center uppercase font-medium sm:text-sm h-12 px-4 text-purple-800 border-2 rounded-md border-purple-800 mx-auto sm:mx-0 sm:mr-4 hover:bg-purple-50 focus:outline-none`}
   width: fit-content;
+`;
+
+export const SaveBtn = styled.button`
+  ${tw`flex justify-center items-center font-normal text-sm px-2 py-1 rounded-md text-gray-700 bg-pink-100 focus:outline-none mt-4 sm:mt-8 font-bold ml-2`}
+  width: fit-content;
+  height: fit-content;
 `;
