@@ -1,3 +1,4 @@
+import { Redirect } from 'react-router-dom';
 import { SHOW_MODAL, HIDE_MODAL } from './types';
 
 export const showModal = ({ modalProps, modalType }) => (dispatch) => {

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import ReactModal from 'react-modal';
 import modalTypes from './types';
 import { hideModal } from '../../actions/modal';
+import { useHistory } from 'react-router-dom';
 
 ReactModal.setAppElement('#root');
 
@@ -13,8 +14,12 @@ const MODAL_TYPES = {
 };
 
 const ModalWrapper = ({ hideModal, modalProps, modalType }) => {
+  const history = useHistory();
   const [isOpen, setIsOpen] = useState(modalProps.open);
   const closeModal = () => {
+    if (modalType === 'login') {
+      history.push('/');
+    }
     hideModal();
   };
 
@@ -46,7 +51,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  hideModal: () => dispatch(hideModal())
+  hideModal: (redirect) => dispatch(hideModal(redirect))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ModalWrapper);
