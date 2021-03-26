@@ -1,10 +1,9 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import AboutContainer from '../components/Container/AboutContainer';
+import FullHeightContainer from '../components/Container/FullHeightContainer';
 
 const About = () => {
   return (
-    <AboutContainer>
+    <FullHeightContainer>
       <div className="flex flex-col justify-center items-center">
         <div className="text-2xl sm:text-4xl font-bold text-purple-900 mb-6">Northwestern, Connected</div>
         <div className="text-center text-base sm:text-xl font-normal sm:w-3/5">
@@ -15,8 +14,8 @@ const About = () => {
         </div>
         <div className="mx-auto font-normal text-base sm:text-xl italic mt-6">Jeff '22</div>
       </div>
-    </AboutContainer>
+    </FullHeightContainer>
   );
 };
 
-export default connect()(About);
+export default About;

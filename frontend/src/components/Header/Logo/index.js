@@ -8,7 +8,7 @@ const Logo = () => {
       <Styled.Image>
         <img src={favicon_img} alt="logo" />
       </Styled.Image>
-      <Styled.Text>Sublets.nu</Styled.Text>
+      <Styled.Text>sublets.nu</Styled.Text>
     </Styled.Logo>
   );
 };

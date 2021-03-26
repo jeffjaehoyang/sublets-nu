@@ -21,6 +21,7 @@ import { GA_TRACKING_ID } from '../../constants';
 import RouteChangeTracker from '../RouteChangeTracker';
 import ReactGA from 'react-ga';
 import HousingEdit from '../../pages/HousingEdit';
+import Privacy from '../../pages/Privacy';
 
 ReactGA.initialize(GA_TRACKING_ID);
 
@@ -42,6 +43,7 @@ const App = () => {
             <Route exact path="/about" component={About} />
             <Route exact path="/signin" component={SignIn} />
             <Route exact path="/signup" component={SignUp} />
+            <Route exact path="/privacy" component={Privacy} />
             <PrivateRoute exact path="/my_listings" component={MyListings} />
             <PrivateRoute exact path="/saved" component={Saved} />
             <PrivateRoute exact path="/housing/upload" component={HousingCreate} />

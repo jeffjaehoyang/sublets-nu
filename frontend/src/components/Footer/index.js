@@ -7,9 +7,7 @@ const Footer = () => (
     <Container>
       <Styled.Links>
         <Styled.FooterLink to="/about">About</Styled.FooterLink>
-        <Styled.FooterLink to="/" rel="noreferrer noopener" target="_blank">
-          Privacy
-        </Styled.FooterLink>
+        {/* <Styled.FooterLink to="/privacy">Privacy</Styled.FooterLink> */}
         <Styled.ExternalLink href="https://forms.gle/WAjUPzCydQP6dmqK8" rel="noreferrer noopener" target="_blank">
           Feedback
         </Styled.ExternalLink>
