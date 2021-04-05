@@ -63,7 +63,7 @@ const HousingList = ({
             defaultZoom={15}
             options={createMapOptions}
           >
-            {housingList.map((housing) => {
+            {housingList?.map((housing) => {
               return (
                 <PointMarker
                   key={housing.id}
