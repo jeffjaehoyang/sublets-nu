@@ -225,7 +225,7 @@ const HousingDetailContent = ({ housing, savedHousingList, addSaved, removeSaved
           ) : null}
         </Styled.ProfileInfoWrapper>
         <Styled.GoogleMapsWrapper>
-          <GoogleMapsContainer height="50vh" alwaysDisplay={true}>
+          <GoogleMapsContainer height="50vh" alwaysDisplay={true} noFlex={true}>
             <GoogleMapReact
               bootstrapURLKeys={{
                 key: GOOGLE_MAPS_API_KEY,
